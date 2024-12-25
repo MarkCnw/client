@@ -1,0 +1,22 @@
+map-toolbar button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+map-toolbar button:not(.home-button){
+    // border-bottom: 0.15em solid red;
+    color: blueviolet;
+}
+map-toolbar button.active:not(.home-button){
+    border-bottom: 0.15em solid red;
+}
+map-toolbar button.active:not(.home-button){
+    border-bottom: 0.15em solid red;
+}
+mat-toolbar .home-button{
+    color: aqua;
+    margin-right: 10px;
+}

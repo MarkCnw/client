@@ -1,3 +1,5 @@
+import { Photo } from "./photo"
+
 export interface User {
     id?: string
     display_name?: string
@@ -12,11 +14,13 @@ export interface User {
     gender?: string
     age?: string
     avatar?: string
-    photos?: string[]
+    photos?: Photo[]
     photoOfTheDay?: string
 
 
     //Like feature
     followers: User[] | string[]
     following: User[] | string[]
+
+    password?: string
 }

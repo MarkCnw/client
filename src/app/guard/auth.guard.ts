@@ -11,6 +11,5 @@ export const authGuard: CanActivateFn = (route, state) => {
   router.navigate(['/404'])
   return false
 
-
   return true
 }

@@ -2,13 +2,17 @@ import { inject, Injectable, signal } from '@angular/core'
 import { environment } from '../../environments/environment'
 import { HttpClient } from '@angular/common/http'
 import { User } from '../_models/user'
-import { firstValueFrom } from 'rxjs'
+import { firstValueFrom, map } from 'rxjs'
 import { parseUserPhoto } from '../_helper/helper'
+import { Photo } from '../_models/photo'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
+  updatePhoto(file: any) {
+    throw new Error('Method not implemented.')
+  }
 
   private _key = 'account';
   private _baseApiUrl = environment.baseUrl + 'api/account/'
@@ -82,6 +86,78 @@ export class AccountService {
       return false
     }
     return true
+  }
+
+
+  async setAvatar(photo_id: string): Promise<void> {
+    const url = environment.baseUrl + 'api/photo/' + photo_id
+    try {
+      const response = this._http.patch(url, {})
+      await firstValueFrom(response)
+      const user = this.data()!.user
+      if (user) {
+        const photos = user.photos?.map(p => {
+          p.is_avatar = p.id === photo_id
+          return p
+        })
+
+        user.photos = photos
+        const copyData = this.data()
+        if (copyData)
+          copyData.user = user
+        this.data.set(copyData)
+        this.saveDataToLocalStorage()
+      }
+    } catch (error) {
+
+    }
+  }
+
+  async deletePhoto(photo_id: string) {
+    const url = environment.baseUrl + 'api/photo/' + photo_id
+    try {
+      const response = this._http.delete(url, {})
+      await firstValueFrom(response)
+      const user = this.data()!.user
+      if (user) {
+        const photos = user.photos?.filter(p => p.id !== photo_id)
+        user.photos = photos
+        const copyData = this.data()
+        if (copyData)
+          copyData.user = user
+        this.data.set(copyData)
+        this.saveDataToLocalStorage()
+      }
+    } catch (error) {
+
+    }
+  }
+
+
+
+  async uploadPhoto(file: File): Promise<boolean> {
+    const url = environment.baseUrl + 'api/photo/'
+    const fromData = new FormData()
+    fromData.append('file', file)
+    try {
+      const response = this._http.post<Photo>(url, fromData)
+      const photo = await firstValueFrom(response)
+      const user = this.data()!.user
+      if (this.data()!.user) {
+        if (!user.photos)
+          user.photos = []
+        user.photos?.push(photo)
+        const copyData = this.data()
+        if (copyData)
+          copyData.user = user
+        this.data.set(copyData)
+        this.saveDataToLocalStorage()
+        return true
+      }
+    } catch (error) {
+
+    }
+    return false
   }
 }
 

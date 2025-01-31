@@ -8,7 +8,6 @@ import { throwError } from 'rxjs'
   providedIn: 'root'
 })
 export class ErrorService {
-
   private router = inject(Router)
   private snackBar = inject(MatSnackBar)
   private snackBarConfig: MatSnackBarConfig = {

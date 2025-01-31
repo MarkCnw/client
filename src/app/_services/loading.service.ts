@@ -15,11 +15,10 @@ export class LoadingService {
     this.spinner.show(undefined, {
       type: "pacman",
       bdColor: "rgba(0, 0, 0, 0.8)",
-      color: 'rgb(255, 255, 255)',
-      fullScreen: false
+      color: "rgba(130, 205, 237, 0.8)",
+      fullScreen: false,
     })
   }
-
   idle() {
     this.loadingRequestCount--
     if (this.loadingRequestCount <= 0) {

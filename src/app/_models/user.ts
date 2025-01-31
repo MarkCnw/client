@@ -17,10 +17,9 @@ export interface User {
     photos?: Photo[]
     photoOfTheDay?: string
 
-
-    //Like feature
-    followers: User[] | string[]
-    following: User[] | string[]
+    //like feature
+    followers: User[] | String[]
+    following: User[] | String[]
 
     password?: string
 }

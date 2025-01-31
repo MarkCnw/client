@@ -1,14 +1,17 @@
-import { Component, inject, input } from '@angular/core'
+import { Component, inject, Injectable, input } from '@angular/core'
 import { User } from '../../_models/user'
 import { MatButtonModule } from '@angular/material/button'
-import { MatIcon, MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon'
 import { MatCardModule } from '@angular/material/card'
-import { CommonModule, Time } from '@angular/common'
+import { CommonModule } from '@angular/common'
 import { MatDialog } from '@angular/material/dialog'
 import { UploadPhotoComponent } from '../../_dialogs/upload-photo/upload-photo.component'
 import { AccountService } from '../../_services/account.service'
-import { TimeagoIntl as MyIntl, TimeagoClock, TimeagoCustomFormatter, TimeagoDefaultClock, TimeagoFormatter, TimeagoIntl, TimeagoModule } from 'ngx-timeago'
+import { TimeagoClock, TimeagoCustomFormatter, TimeagoDefaultClock, TimeagoFormatter, TimeagoIntl, TimeagoModule } from 'ngx-timeago'
 import { strings as engString } from 'ngx-timeago/language-strings/en.js'
+
+// @Injectable()
+// class MyTntl extends TimeagoIntl { }
 
 @Component({
   selector: 'app-photo',
@@ -46,4 +49,3 @@ export class PhotoComponent {
     this.accountService.setAvatar(photo_id)
   }
 }
-

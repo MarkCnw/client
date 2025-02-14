@@ -13,10 +13,11 @@ import { AccountService } from '../_services/account.service'
 import { Router } from '@angular/router'
 import { PasswordValidator } from '../_validators/passworld.validator'
 import { PasswordMatchValidator } from '../_validators/passworld_mathch.validator'
+import { MatIconModule } from '@angular/material/icon'
 
 @Component({
   selector: 'app-login',
-  imports: [MatCardModule, MatRadioModule, ReactiveFormsModule, CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDatepickerModule],
+  imports: [MatCardModule, MatRadioModule, ReactiveFormsModule, CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDatepickerModule, MatIconModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   providers: [provideNativeDateAdapter()],

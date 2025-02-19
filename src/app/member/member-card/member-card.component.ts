@@ -20,7 +20,7 @@ export class MemberCardComponent implements OnInit {
   ngOnInit(): void {
     const member = this.member()
     if (!member || !member.id) return
-    this.isFollowing = this.likeService.IsFollowingmember(member.id)
+    this.isFollowing = this.likeService.IsFollowing(member.id)
   }
 
   toggleLike() {

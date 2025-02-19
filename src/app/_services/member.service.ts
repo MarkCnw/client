@@ -7,19 +7,17 @@ import { cacheManager } from '../_helper/cache'
 import { parseQuery, parseUserPhoto } from '../_helper/helper'
 import { firstValueFrom } from 'rxjs'
 
-type dataCategory = 'members' | 'chat' | 'followers' | 'following'
+type dataCategory = 'member' | 'follower' | 'following'
 @Injectable({
   providedIn: 'root'
 })
 export class MemberService {
   private http = inject(HttpClient)
-  private url = environment.baseUrl + 'api/'
-
+  private url = environment.baseUrl + 'api/' //user
   paginator = signal<Paginator<UserQueryPagination, User>>(default_paginator)
-
   private getData(category: dataCategory) {
-
     const pagination = this.paginator().pagination
+    //cache
     let key = cacheManager.createKey(pagination)
     const cacheData = cacheManager.load(key, category)
     if (cacheData) {
@@ -27,21 +25,21 @@ export class MemberService {
       this.paginator.set(cacheData)
       return
     }
-
+    //get from server
     console.log(`load ${category} from server !!`)
     const url = this.url + 'user/' + parseQuery(pagination)
     this.http.get<Paginator<UserQueryPagination, User>>(url).subscribe({
-      next: (response) => {
+      next: response => {
         key = cacheManager.createKey(pagination)
         cacheManager.save(key, category, response)
         this.paginator.set(response)
       }
     })
   }
-  getMembers() {
-    this.getData('members')
-  }
 
+  getMembers() {
+    this.getData('member')
+  }
   async getMemberByUsername(username: string): Promise<User | undefined> {
     const member = this.paginator().items.find(obj => obj.username === username)
     if (member) {
@@ -54,11 +52,9 @@ export class MemberService {
         const _member = await firstValueFrom(this.http.get<User>(url))
         return parseUserPhoto(_member)
       } catch (error) {
-        console.error("Get member by username error: ", error)
+        console.error('Get member Error', error)
       }
     }
     return undefined
   }
-
-
 }

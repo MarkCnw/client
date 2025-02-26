@@ -1,11 +1,12 @@
-import { HttpClient } from '@angular/common/http'
-import { inject, Injectable, signal } from '@angular/core'
-import { environment } from '../../environments/environment'
-import { default_paginator, Paginator, UserQueryPagination } from '../_models/pagination'
-import { User } from '../_models/user'
-import { cacheManager } from '../_helper/cache'
-import { parseQuery, parseUserPhoto } from '../_helper/helper'
-import { firstValueFrom } from 'rxjs'
+import { HttpClient } from "@angular/common/http"
+import { Injectable, inject, signal } from "@angular/core"
+import { firstValueFrom } from "rxjs"
+import { environment } from "../../environments/environment"
+import { cacheManager } from "../_helper/cache"
+import { parseQuery, parseUserPhoto } from "../_helper/helper"
+import { Paginator, UserQueryPagination, default_paginator } from "../_models/pagination"
+import { User } from "../_models/user"
+
 
 type dataCategory = 'member' | 'follower' | 'following'
 @Injectable({
@@ -22,7 +23,7 @@ export class MemberService {
     const cacheData = cacheManager.load(key, category)
     if (cacheData) {
       console.log(`load ${category} from cache !!`)
-      this.paginator.set(cacheData)
+      this.paginator.set(cacheData as Paginator<UserQueryPagination, User>)
       return
     }
     //get from server

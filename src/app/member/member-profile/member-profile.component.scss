@@ -1,7 +1,8 @@
-.drawer-container{
-    height: calc(100vh - 100px);
+.drawer-container {
+    height: calc(100vh - 70px);
+    // border: 1px solid red;
 
-    .sidenav-content{
+    .sidenav-content {
         display: flex;
         width: 100%;
         flex-grow: 1;
@@ -10,47 +11,49 @@
         overflow: auto;
     }
 
-    .sidenav{
+    .sidenav {
         width: 95%;
         padding-top: 1em;
         padding-left: 2em;
 
-        button{
+        button {
             margin-top: 0.5em;
-
         }
     }
-    .img-tump{
+
+    .img-thumb {
         width: 250px;
-        height: 1em;
     }
-        mat-card{
-            width: 100%;
-            height: 100%;
-        }
-        mat-card-content{
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
 
-            .left{
-                margin-right: 1em;
-            }
-        }
-        .gallery{
-            margin-right: 2em;
-        }
-
+    mat-card {
+        width: 98%;
+        height: 100%;
     }
-.chatter{
+
+    mat-card-content {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        .left {
+            margin-right: 1em;
+        }
+    }
+
+    .gallery {
+        margin-right: 2em;
+    }
+}
+
+.chatter {
     width: 100%;
     height: 100%;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50% -50%);
+    transform: translate(-50%, -50%);
     z-index: 1000;
-    background-color: rgba(66 ,56,56,0.685 );
+    background-color: rgba(66, 56, 56, 0.685);
 
     .chat-container {
         background-color: rgba(255, 255, 255, 0.425);
@@ -61,38 +64,12 @@
         position: relative;
         top: 50%;
         left: 50%;
-        transform: translate(-50% - 60%);
-        height: calc(100vh - 100px);
+        transform: translate(-50%, -60%);
+        height: calc(100vh - 250px);
         max-width: 800px;
         width: calc(100% - 5em);
 
-        .chat-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 0;
-            color: #0484ea;
-
-            div{
-                margin-left: 5px;
-
-            }
-            button{
-                margin: 0;
-                background-color: #fdfdfd00;
-                cursor: pointer;
-                border: none;
-
-                :hover{
-                    color: #77b5f8;
-                }
-            }
-
-            .get-more-msg{
-                cursor: pointer;
-            }
-        }
-        .chat{
+        .chat {
             display: flex;
             flex-grow: 1;
             flex-direction: column;
@@ -104,9 +81,9 @@
             height: 100%;
             max-height: calc(100vh - 350px);
             width: calc(100% - 20px);
-            overflow: auto;
+            overflow-y: auto;
 
-            li{
+            li {
                 width: 98%;
                 margin-top: 30px;
                 flex-direction: column;
@@ -114,52 +91,87 @@
                 align-items: center;
             }
         }
-        .input-container{
-            position: relative;
-            width: calc(100% - 50px);
-            margin-top: 0.5em;
-            margin-left: 1em;
-            padding: 0 10px 0 10px;
-            background-color: white;
-            border: 2px solid #ccc;
-            border-radius: 5px;
 
-            input{
-                font-size: medium;
-                width: calc(100% - 20px);
-                padding-right: 50px;
-                outline: none;
-                box-sizing: border-box;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                border: none;
-            }
 
-            button{
-                position: absolute;
-                right: 5px;
-                top: 50%;
-                transform: translateY(-50%);
-                background-color: #007bff;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                padding: 10px 15px;
-                cursor: pointer;
 
-                :hover{
-                    background-color: #0056b3;
-                }
-            }
-        }
-        .chat{
+        .chat {
             scrollbar-width: thin;
             scrollbar-color: #0484da91 rgba(0, 0, 0, 0.13);
         }
     }
 }
-.disconnected{
+
+.chat-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    color: #0484da;
+
+    div {
+        margin-left: 5px;
+    }
+
+    button {
+        margin: 0;
+        background-color: #fdfdfd00;
+        cursor: pointer;
+        border: none;
+
+        :hover {
+            color: #77b5f8;
+        }
+    }
+
+    .get-more-msg {
+        cursor: pointer;
+    }
+}
+
+.input-container {
+    position: relative;
+    width: calc(100% - 50px);
+    margin-top: 0.5em;
+    margin-left: 1em;
+    padding: 0 10px 0 10px;
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    border: none;
+    height: 45px;
+
+    input {
+        margin-top: 1em;
+        font-size: medium;
+        width: calc(100% - 20px);
+        padding-right: 50px;
+        outline: none;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        border: none;
+    }
+
+    button {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+}
+
+.disconnected {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -177,14 +189,15 @@
     box-shadow: 0 2px 10px rgba(10, 10, 10, 0.226);
     z-index: 2000;
 
-    h1{
+    h1 {
         color: #ee4937c9;
         font-size: 3em;
         margin: 0;
     }
-    h3{
+
+    h3 {
         color: white;
         font-size: 1.5em;
-        margin: 10px 0 0 0 ;
+        margin: 10px 0 0 0;
     }
 }
